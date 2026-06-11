@@ -1,0 +1,8 @@
+node_modules/
+.env
+backend/src/contracts/InvoiceNFT.json
+backend/src/contracts/contractAddress.json
+smart-contract/artifacts/
+smart-contract/cache/
+smart-contract/.env
+frontend/dist/
