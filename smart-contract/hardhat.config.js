@@ -25,7 +25,7 @@ module.exports = {
   networks: {
     // Local Ganache network for development & testing
     ganache: {
-      url: process.env.GANACHE_RPC_URL || "http://127.0.0.1:7545",
+      url: process.env.GANACHE_RPC_URL || "http://127.0.0.1:8545",
       chainId: 1337,
       accounts: [
         process.env.SUPPLIER_PRIVATE_KEY,
@@ -37,9 +37,11 @@ module.exports = {
     // Ethereum Sepolia testnet — used in the paper (Table 1 & 2 gas measurements)
     sepolia: {
       url: process.env.SEPOLIA_RPC_URL || "",
-      accounts: process.env.DEPLOYER_PRIVATE_KEY
-        ? [process.env.DEPLOYER_PRIVATE_KEY]
-        : [],
+      accounts:
+        process.env.DEPLOYER_PRIVATE_KEY &&
+        process.env.DEPLOYER_PRIVATE_KEY.length > 60
+      ? [process.env.DEPLOYER_PRIVATE_KEY]
+      : [],
       chainId: 11155111,
     },
   },

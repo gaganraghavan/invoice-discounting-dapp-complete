@@ -14,7 +14,8 @@
  *   npx hardhat verify --network sepolia <DEPLOYED_ADDRESS>
  */
 
-const { ethers } = require("hardhat");
+const hre = require("hardhat");
+const { ethers } = hre;
 const fs   = require("fs");
 const path = require("path");
 
