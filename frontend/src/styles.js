@@ -1,142 +1,106 @@
-/**
- * styles.js — Shared design tokens and style constants
- * Paper: "A Non-Fungible Token Based Approach to Invoice Discounting" — PES University
- *
- * Unified Interface System (Section IV-A): all three parties use same dashboard.
- * Dark theme consistent with blockchain/finance DApp aesthetic.
- */
-
-// ─── Color Palette ────────────────────────────────────────────────────────────
 export const colors = {
-  bg:           "#0d1117",
-  bgCard:       "#161b22",
-  bgInput:      "#1c2128",
-  bgHover:      "#21262d",
-  border:       "#30363d",
-  borderLight:  "#3d444d",
-
-  textPrimary:  "#e6edf3",
-  textSecondary:"#8b949e",
-  textMuted:    "#656d76",
-
-  blue:         "#1f6feb",
-  blueHover:    "#388bfd",
-  green:        "#238636",
-  greenLight:   "#3fb950",
-  red:          "#da3633",
-  redLight:     "#f85149",
-  yellow:       "#9e6a03",
-  yellowLight:  "#d29922",
-  purple:       "#8957e5",
-  orange:       "#f0883e",
+  bg:           "#f8fafc",
+  bgCard:       "#ffffff",
+  bgSidebar:    "#1e293b",
+  border:       "#e2e8f0",
+  borderDark:   "#cbd5e1",
+  textPrimary:  "#0f172a",
+  textSecondary:"#475569",
+  textMuted:    "#94a3b8",
+  blue:         "#2563eb",
+  blueHover:    "#1d4ed8",
+  blueLight:    "#eff6ff",
+  green:        "#16a34a",
+  greenLight:   "#f0fdf4",
+  greenBorder:  "#bbf7d0",
+  red:          "#dc2626",
+  redLight:     "#fef2f2",
+  redBorder:    "#fecaca",
+  yellow:       "#d97706",
+  yellowLight:  "#fffbeb",
+  yellowBorder: "#fde68a",
+  purple:       "#7c3aed",
+  purpleLight:  "#f5f3ff",
 };
 
-// ─── Role colors (Supplier / Buyer / Financier) ───────────────────────────────
-export const roleColors = {
-  supplier:  { bg: "#1c2e4a", border: "#1f6feb", text: "#79c0ff", label: "Supplier" },
-  buyer:     { bg: "#1c3a2a", border: "#238636", text: "#56d364", label: "Buyer"    },
-  financier: { bg: "#2d1f54", border: "#8957e5", text: "#bc8cff", label: "Financier"},
-};
-
-// ─── Stage badge styles (ownership journey from paper) ────────────────────────
-export const stageBadge = {
-  MINTED_UNSIGNED:         { bg: "#21262d", color: "#8b949e",  label: "Minted — Unsigned"    },
-  SIGNED_NOT_LISTED:       { bg: "#1c2e4a", color: "#79c0ff",  label: "Signed — Not Listed"  },
-  LISTED_FOR_SALE:         { bg: "#2d2a1f", color: "#d29922",  label: "Listed for Sale"       },
-  PURCHASED_BY_FINANCIER:  { bg: "#2d1f54", color: "#bc8cff",  label: "Owned by Financier"   },
-  SETTLED_OWNED_BY_BUYER:  { bg: "#1c3a2a", color: "#56d364",  label: "Settled — Buyer Owns" },
-  BURNED:                  { bg: "#3a1c1c", color: "#f85149",  label: "Burned"                },
-  UNKNOWN:                 { bg: "#21262d", color: "#8b949e",  label: "Unknown"               },
-};
-
-// ─── Shared component styles ──────────────────────────────────────────────────
 export const shared = {
   card: {
-    background:   colors.bgCard,
-    border:       `1px solid ${colors.border}`,
-    borderRadius: 8,
+    background:   "#ffffff",
+    border:       "1px solid #e2e8f0",
+    borderRadius: 12,
     padding:      24,
     marginBottom: 20,
+    boxShadow:    "0 1px 3px rgba(0,0,0,0.06)",
   },
   input: {
     width:        "100%",
-    padding:      "9px 12px",
+    padding:      "10px 14px",
     fontSize:     14,
-    borderRadius: 6,
-    border:       `1px solid ${colors.border}`,
-    background:   colors.bgInput,
-    color:        colors.textPrimary,
+    borderRadius: 8,
+    border:       "1px solid #e2e8f0",
+    background:   "#ffffff",
+    color:        "#0f172a",
     outline:      "none",
     boxSizing:    "border-box",
+    transition:   "border-color 0.15s",
   },
   label: {
     display:      "block",
     fontSize:     13,
     fontWeight:   600,
-    color:        colors.textSecondary,
+    color:        "#374151",
     marginBottom: 6,
-    textTransform:"uppercase",
-    letterSpacing:"0.5px",
-  },
-  btn: (variant = "primary") => ({
-    padding:       "9px 18px",
-    fontSize:      14,
-    fontWeight:    600,
-    borderRadius:  6,
-    border:        "none",
-    cursor:        "pointer",
-    transition:    "background 0.15s",
-    background: variant === "primary"  ? colors.blue
-              : variant === "success"  ? colors.green
-              : variant === "danger"   ? colors.red
-              : variant === "warning"  ? colors.yellow
-              : colors.bgHover,
-    color: "#ffffff",
-  }),
-  select: {
-    width:        "100%",
-    padding:      "9px 12px",
-    fontSize:     14,
-    borderRadius: 6,
-    border:       `1px solid ${colors.border}`,
-    background:   colors.bgInput,
-    color:        colors.textPrimary,
-    outline:      "none",
-    cursor:       "pointer",
   },
   formRow: {
     display:      "flex",
     flexDirection:"column",
     gap:          6,
-    marginBottom: 16,
+    marginBottom: 18,
+  },
+  btn: (variant = "primary") => ({
+    padding:      "10px 20px",
+    fontSize:     14,
+    fontWeight:   600,
+    borderRadius: 8,
+    border:       "none",
+    cursor:       "pointer",
+    transition:   "all 0.15s",
+    background:   variant === "primary"  ? "#2563eb"
+                : variant === "success"  ? "#16a34a"
+                : variant === "danger"   ? "#dc2626"
+                : variant === "warning"  ? "#d97706"
+                : variant === "outline"  ? "#ffffff"
+                : "#f1f5f9",
+    color:        variant === "outline"  ? "#374151" : "#ffffff",
+    border:       variant === "outline"  ? "1px solid #e2e8f0" : "none",
+  }),
+  select: {
+    width:        "100%",
+    padding:      "10px 14px",
+    fontSize:     14,
+    borderRadius: 8,
+    border:       "1px solid #e2e8f0",
+    background:   "#ffffff",
+    color:        "#0f172a",
+    outline:      "none",
+    cursor:       "pointer",
   },
   errorBox: {
-    background:   "#3a1c1c",
-    border:       `1px solid ${colors.red}`,
-    borderRadius: 6,
-    padding:      "10px 14px",
-    color:        colors.redLight,
+    background:   "#fef2f2",
+    border:       "1px solid #fecaca",
+    borderRadius: 8,
+    padding:      "12px 16px",
+    color:        "#dc2626",
     fontSize:     13,
     marginTop:    12,
   },
   successBox: {
-    background:   "#1c3a2a",
-    border:       `1px solid ${colors.green}`,
-    borderRadius: 6,
-    padding:      14,
-    color:        colors.greenLight,
+    background:   "#f0fdf4",
+    border:       "1px solid #bbf7d0",
+    borderRadius: 8,
+    padding:      16,
+    color:        "#15803d",
     fontSize:     13,
-    fontFamily:   "monospace",
     marginTop:    12,
-    wordBreak:    "break-all",
   },
 };
-
-// ─── Caller type selector options ─────────────────────────────────────────────
-// Paper Section IV-A: Unified Interface — same interface for all three roles
-export const callerTypeOptions = [
-  { value: "supplier",  label: "Supplier  (uses SUPPLIER_PRIVATE_KEY from .env)"  },
-  { value: "buyer",     label: "Buyer     (uses BUYER_PRIVATE_KEY from .env)"     },
-  { value: "financier", label: "Financier (uses FINANCIER_PRIVATE_KEY from .env)" },
-  { value: "custom",    label: "Custom    (enter private key below)"              },
-];
